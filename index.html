@@ -546,6 +546,24 @@
   .storefront img{width:100%;height:auto;border-radius:14px;border:1px solid var(--band-line);display:block;box-shadow:0 26px 54px -30px var(--shadow)}
   .storefront figcaption{margin-top:.9rem;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.05em;color:var(--band-dim)}
 
+  /* ---- затемнение вверху героя (читаемость шапки) ---- */
+  .hero-media::before{content:"";position:absolute;top:0;left:0;right:0;height:160px;z-index:1;pointer-events:none;background:linear-gradient(180deg,var(--hero-scrim) 0%,var(--hero-scrim) 40%,transparent 100%)}
+
+  /* ---- фон-фото за цитатой ---- */
+  .quote-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .quote-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,40,34,.80),rgba(13,24,20,.88))}
+  .quote-sec .contours{z-index:2}
+  .quote-inner{z-index:3}
+
+  /* ---- контакты: фасад + карта в ряд ---- */
+  .contact-media{display:grid;grid-template-columns:.82fr 1.18fr;gap:1.4rem;margin-top:2.5rem;position:relative;z-index:1;align-items:start}
+  .contact-media .storefront{margin:0;max-width:none}
+  .contact-media .storefront img{width:100%;height:360px;object-fit:cover;border-radius:14px;border:1px solid var(--band-line);display:block;box-shadow:0 24px 50px -30px var(--shadow)}
+  .contact-media .storefront figcaption{margin-top:.8rem;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.05em;color:var(--band-dim);text-align:center}
+  .contact-media .map-embed{margin-top:0}
+  .contact-media .map-embed iframe{height:360px}
+  .map-col .map-link{margin-top:1rem}
+
   /* ================= АДАПТИВ ================= */
   @media (max-width:900px){
     .hero-grid{grid-template-columns:1fr;gap:2.5rem}
@@ -590,6 +608,10 @@
     .rev{padding:1.7rem 1.5rem}
     .theme button{width:36px;height:32px}
     .burger{width:46px;height:44px}
+    .contact-media{grid-template-columns:1fr;gap:1.8rem}
+    .contact-media .storefront img{height:260px}
+    .contact-media .map-embed iframe{height:300px}
+    .hero-media::before{height:96px}
   }
   @media (max-width:380px){
     .nav{gap:.4rem}
@@ -777,6 +799,8 @@
 
 <!-- ============ ЦИТАТА ============ -->
 <section class="quote-sec">
+  <img class="quote-bg" src="quote.webp" alt="" loading="lazy">
+  <div class="quote-scrim"></div>
   <svg class="contours" viewBox="0 0 1000 500" fill="none" aria-hidden="true">
     <g stroke="currentColor" stroke-width="1.1" fill="none">
       <path d="M-40 90 C 220 40 400 140 600 90 S 950 40 1040 100"/>
@@ -889,6 +913,10 @@
       <div class="gtile cimg"><img src="g3.webp" alt="Кабинет с кедровой бочкой и мягким светом" loading="lazy"><span class="gt-tag">Кедровая бочка</span></div>
       <div class="gtile cimg"><img src="g4.webp" alt="Зона отдыха с сакурой" loading="lazy"><span class="gt-tag">Зона отдыха</span></div>
       <div class="gtile cimg"><img src="g5.webp" alt="Травяной чай после сеанса" loading="lazy"><span class="gt-tag">Чай после сеанса</span></div>
+      <div class="gtile cimg"><img src="g6.webp" alt="Кабинет с душевой кабиной" loading="lazy"><span class="gt-tag">Кабинет с душем</span></div>
+      <div class="gtile cimg"><img src="g7.webp" alt="Светлый массажный кабинет" loading="lazy"><span class="gt-tag">Массажный кабинет</span></div>
+      <div class="gtile cimg"><img src="g8.webp" alt="Уютная зона ожидания" loading="lazy"><span class="gt-tag">Зона ожидания</span></div>
+      <div class="gtile cimg"><img src="g9.webp" alt="Лаунж-зона с декором" loading="lazy"><span class="gt-tag">Лаунж-зона</span></div>
     </div>
     <p class="serv-note">Реальные кабинеты и зоны отдыха салона «Алтай» — приезжайте почувствовать атмосферу вживую.</p>
   </div>
@@ -1005,14 +1033,18 @@
         </div>
       </div>
     </div>
-    <figure class="storefront reveal">
-      <img src="exterior.webp" width="800" height="1067" alt="Вход в салон «Алтай» на Озерковском переулке, 11" loading="lazy">
-      <figcaption>Вход с Озерковского переулка, 11 — вывеска «Релакс &amp; SPA»</figcaption>
-    </figure>
-    <div class="map-embed reveal">
-      <iframe src="https://yandex.ru/map-widget/v1/?ll=37.634712%2C55.740179&z=17&pt=37.634712,55.740179,pm2rdm" width="100%" height="380" frameborder="0" allowfullscreen="true" loading="lazy" title="Салон «Алтай» на карте Москвы"></iframe>
+    <div class="contact-media reveal">
+      <figure class="storefront">
+        <img src="exterior.webp" alt="Вход в салон «Алтай» на Озерковском переулке, 11" loading="lazy">
+        <figcaption>Вход с Озерковского пер., 11 — вывеска «Релакс &amp; SPA»</figcaption>
+      </figure>
+      <div class="map-col">
+        <div class="map-embed">
+          <iframe src="https://yandex.ru/map-widget/v1/?ll=37.634712%2C55.740179&z=17&pt=37.634712,55.740179,pm2rdm" width="100%" height="360" frameborder="0" allowfullscreen="true" loading="lazy" title="Салон «Алтай» на карте Москвы"></iframe>
+        </div>
+        <a class="map-link" href="https://yandex.ru/maps/org/altay/2217405231/" target="_blank" rel="noopener">Открыть на Яндекс.Картах и проложить маршрут →</a>
+      </div>
     </div>
-    <a class="map-link" href="https://yandex.ru/maps/org/altay/2217405231/" target="_blank" rel="noopener">Открыть на Яндекс.Картах и проложить маршрут →</a>
     <p class="disclaimer">Имеются противопоказания, необходима консультация специалиста. Информация на сайте не является публичной офертой; актуальные цены и услуги уточняйте у администратора салона.</p>
   </div>
 </section>
